@@ -9,10 +9,15 @@
 
 void SocketSink::init() {
 }
-
+// Функция для очистки ресурсов
 void SocketSink::cleanup() {
+    if (sock >= 0) {
+        close(sock);
+        sock = -1;
+    }
 }
 
+// Функция для подключения к серверу
 void SocketSink::connectToServer(const std::string& address, int port) {
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {

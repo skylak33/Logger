@@ -9,6 +9,7 @@ option(BUILD_SHARED_LIBS ON)
 
 file(GLOB logger_sources
     "src/*.cpp"
+    "src/*.tpp"
 )
 
 add_library(logger ${logger_sources})

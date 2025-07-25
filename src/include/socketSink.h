@@ -4,6 +4,7 @@
 
 #include "iLogSink.h"
 
+// Класс для записи логов в сокет
 class SocketSink : public iLogSink {
     public:
         SocketSink(const std::string& address, int port);
