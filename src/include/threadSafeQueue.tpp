@@ -19,7 +19,7 @@ T ThreadSafeQueue<T>::waitAndPop() {
 
 // Функция, выполняемая в отдельном потоке
 void logWorker(ThreadSafeQueue<logTask>& queue, Logger& logger) {
-    std::cout << "[logger]: Запущен." << std::endl;
+    std::cout << "[logger thread]: Запущен." << std::endl;
     while (true) {
         logTask task = queue.waitAndPop();
         if (task.message == "exit") {
@@ -30,6 +30,6 @@ void logWorker(ThreadSafeQueue<logTask>& queue, Logger& logger) {
         }   else {
             logger.logInfo(task.message);
         }
-        std::cout << "[logger]: Завершение работы." << std::endl;
+        std::cout << "[logger thread]: Завершение работы." << std::endl;
     }
 }

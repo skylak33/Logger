@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
 #include <thread>
-#include <vector>
-#include <queue>
 #include <mutex>
-#include <condition_variable>
+#include <memory>
 #include <optional>
-#include <sstream>
+
 
 #include "logger.h"
 #include "threadSafeQueue.h"
@@ -24,11 +22,13 @@ int main(int argc, char* argv[]) {
 
     // Создаем логгер и очередь
     try {
-        auto logger = Logger::createFileLogger(filename, default_level);
+        auto logger = Logger::createFileLogger(filename, default_level); // Часть 2
+        // auto socket_logger = Logger::createSocketLogger("127.0.0.1", 9999, logLevel::DEBUG); // Часть 3
         ThreadSafeQueue<logTask> queue;
 
         // Запускаем поток логирования
-        std::thread worker(logWorker, std::ref(queue), std::ref(logger));
+        std::thread worker(logWorker, std::ref(queue), std::ref(logger); // Часть 2
+        // std::thread worker(logWorker, std::ref(queue), std::ref(socket_logger));// Часть 3
 
         std::cout << "Приложение готово. Введите сообщение для записи в журнал.\n";
         std::cout << "Формат: [уровень] <сообщение> (уровень необязателен).\n";
@@ -52,7 +52,8 @@ int main(int argc, char* argv[]) {
         std::cout << "Приложение завершено." << std::endl;
 
     }   catch (const std::exception& e) {
-        std::cerr << "Ошибка при создании логгера: " << e.what() << std::endl;
+        //std::cerr << "Ошибка при создании логгера: " << e.what() << std::endl;
+        std::cerr << "Не удалось создать сокет-логгер: " << e.what() << std::endl;
         return 1;
     }
 

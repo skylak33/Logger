@@ -6,7 +6,6 @@
 #include "fileSink.h"
 #include "socketSink.h"
 
-// Приватный конструктор
 Logger::Logger(std::unique_ptr<iLogSink> sink, logLevel level)
     : sink(std::move(sink)), currentLevel(level) {
 }

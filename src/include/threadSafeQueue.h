@@ -26,4 +26,4 @@ class ThreadSafeQueue {
 void logWorker(ThreadSafeQueue<logTask>& queue, Logger& logger);
 
 
-#include "../threadSafeQueue.tpp"
+#include "threadSafeQueue.tpp"
